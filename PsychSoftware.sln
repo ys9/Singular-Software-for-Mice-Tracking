@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PsychSoftware", "PsychSoftware\PsychSoftware.pyproj", "{A0858EE0-1FA0-473C-9A22-7B9843AD9509}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0858EE0-1FA0-473C-9A22-7B9843AD9509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0858EE0-1FA0-473C-9A22-7B9843AD9509}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E65F5E52-65F6-44CE-93E1-6D9F9D5B20C2}
+	EndGlobalSection
+EndGlobal
