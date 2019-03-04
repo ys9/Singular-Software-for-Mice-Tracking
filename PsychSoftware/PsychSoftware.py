@@ -7,6 +7,7 @@ def window():
     LitLimeWindow.show()
 
     app.exec_()
+    print("done")
 
     LitLimeWindow.stop_video_threads()
 

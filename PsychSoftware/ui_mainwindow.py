@@ -3,7 +3,7 @@
 # Form implementation generated from reading ui file 'MainWindow.ui',
 # licensing of 'MainWindow.ui' applies.
 #
-# Created: Sat Mar  2 20:08:44 2019
+# Created: Sun Mar  3 13:18:22 2019
 #      by: pyside2-uic  running on PySide2 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -94,12 +94,25 @@ class Ui_MainWindow(object):
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 758, 26))
         self.menubar.setObjectName("menubar")
-        self.menuFile = QtWidgets.QMenu(self.menubar)
-        self.menuFile.setObjectName("menuFile")
+        self.menuSettings = QtWidgets.QMenu(self.menubar)
+        self.menuSettings.setObjectName("menuSettings")
         self.menuHelp = QtWidgets.QMenu(self.menubar)
         self.menuHelp.setObjectName("menuHelp")
         MainWindow.setMenuBar(self.menubar)
-        self.menubar.addAction(self.menuFile.menuAction())
+        self.actionOptions = QtWidgets.QAction(MainWindow)
+        self.actionOptions.setObjectName("actionOptions")
+        self.actionOptions_2 = QtWidgets.QAction(MainWindow)
+        self.actionOptions_2.setObjectName("actionOptions_2")
+        self.actionDocumentation = QtWidgets.QAction(MainWindow)
+        self.actionDocumentation.setObjectName("actionDocumentation")
+        self.actionAbout_LitLime = QtWidgets.QAction(MainWindow)
+        self.actionAbout_LitLime.setObjectName("actionAbout_LitLime")
+        self.actionSettings = QtWidgets.QAction(MainWindow)
+        self.actionSettings.setObjectName("actionSettings")
+        self.menuSettings.addAction(self.actionSettings)
+        self.menuHelp.addAction(self.actionDocumentation)
+        self.menuHelp.addAction(self.actionAbout_LitLime)
+        self.menubar.addAction(self.menuSettings.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -115,6 +128,11 @@ class Ui_MainWindow(object):
         self.FastForwardButton.setText(QtWidgets.QApplication.translate("MainWindow", ">>", None, -1))
         self.RecordButton.setText(QtWidgets.QApplication.translate("MainWindow", "Record", None, -1))
         self.SampleWidgetButton.setText(QtWidgets.QApplication.translate("MainWindow", "OpenSampleWidget", None, -1))
-        self.menuFile.setTitle(QtWidgets.QApplication.translate("MainWindow", "File", None, -1))
+        self.menuSettings.setTitle(QtWidgets.QApplication.translate("MainWindow", "File", None, -1))
         self.menuHelp.setTitle(QtWidgets.QApplication.translate("MainWindow", "Help", None, -1))
+        self.actionOptions.setText(QtWidgets.QApplication.translate("MainWindow", "Options", None, -1))
+        self.actionOptions_2.setText(QtWidgets.QApplication.translate("MainWindow", "Options", None, -1))
+        self.actionDocumentation.setText(QtWidgets.QApplication.translate("MainWindow", "Documentation", None, -1))
+        self.actionAbout_LitLime.setText(QtWidgets.QApplication.translate("MainWindow", "About LitLime", None, -1))
+        self.actionSettings.setText(QtWidgets.QApplication.translate("MainWindow", "Settings", None, -1))
 

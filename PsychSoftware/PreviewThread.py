@@ -1,5 +1,6 @@
 from MainWindow import *
 #import numpy as np
+import time
 
 class PreviewThread(QThread):
 
@@ -7,6 +8,7 @@ class PreviewThread(QThread):
 
     def __init__(self, parent, device_id):
         self.shouldPreview = True
+        self.shouldPause = False
         self.device_id = device_id
         return super().__init__(parent)
 
@@ -14,6 +16,9 @@ class PreviewThread(QThread):
         self.cap = cv2.VideoCapture(self.device_id)
         self.cap.set(cv2.cv2.CAP_PROP_FPS, 60)
         while self.shouldPreview:
+            if self.shouldPause:
+                time.sleep(1)
+                continue
             ret, frame = self.cap.read()
             if ret:
                 rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -21,4 +26,5 @@ class PreviewThread(QThread):
                 p = convertToQtFormat.scaled(640, 480, Qt.KeepAspectRatio)
                 self.changePixmap.emit(p)
 
-    
+            else:
+                break

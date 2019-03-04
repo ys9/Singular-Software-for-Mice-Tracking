@@ -42,6 +42,9 @@
     <Compile Include="PreviewThread.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="VideoPlayerThread.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.6-32" />
