@@ -2,16 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>a0858ee0-1fa0-473c-9a22-7b9843ad9509</ProjectGuid>
+    <ProjectGuid>a9525712-f00c-4f8a-8ee2-2b7d9de87e03</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>PsychSoftware.py</StartupFile>
+    <StartupFile>LitLimeMiceTracking.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>PsychSoftware</Name>
-    <RootNamespace>PsychSoftware</RootNamespace>
-    <IsWindowsApplication>False</IsWindowsApplication>
+    <Name>LitLimeMiceTracking</Name>
+    <RootNamespace>LitLimeMiceTracking</RootNamespace>
     <InterpreterId>Global|PythonCore|3.7</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -23,37 +22,26 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Camera.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LitLimeMiceTracking.py" />
     <Compile Include="MainWindow.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="PsychSoftware.py" />
-    <Compile Include="RecordingThread.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="SampleDialog.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="SampleWidget.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ui_sample_dialog.py" />
+    <Compile Include="PreviewThread.py" />
+    <Compile Include="RecordingThread.py" />
     <Compile Include="ui_mainwindow.py" />
-    <Compile Include="ui_sample_widget.py" />
-    <Compile Include="PreviewThread.py">
+    <Compile Include="VideoDisplayManager.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="VideoPlayerThread.py">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="VideoPlayerThread.py" />
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="Global|PythonCore|3.6-32" />
     <InterpreterReference Include="Global|PythonCore|3.7" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="MainWindow.ui" />
-    <Content Include="SampleDialog.ui" />
-    <Content Include="SampleWidget.ui" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
