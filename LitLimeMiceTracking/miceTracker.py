@@ -24,17 +24,17 @@ class miceTracker():
                 contours, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE) 
 
                 maxArea = 0
-                flag = 0
+                flag = True
                 for c in contours:
                         if cv2.contourArea(c) < 1000:
-                                flag = 1
+                                flag = True
                                 continue 
                         if cv2.contourArea(c) > maxArea:
-                                flag = 0
+                                flag = False
                                 maxArea = cv2.contourArea(c) 
                                 (x, y, w, h) = cv2.boundingRect(c) 
                                 self.coordinates.append((x, y, w, h))
-                                if (self.coordinates.len() > 20):
+                                if (len(self.coordinates) > 20):
                                         update_file()
                 if not flag:
                         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
@@ -51,7 +51,6 @@ class miceTracker():
 
 
         def calculate_cg(self, x, y, w, h):
-        """ Calculates the center of gravity of a rectangle """
                 return ((x + w) / 2, (y + h) / 2)
 
         def update_file(self):
