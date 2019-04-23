@@ -8,6 +8,7 @@ class miceTracker():
                 self.height = height 
                 self.width = width 
                 self.kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5)) 
+                #self.fgbg = cv2.bgsegm.createBackgroundSubtractorMOG() 
                 self.fgbg = cv2.bgsegm.createBackgroundSubtractorMOG() 
                 self.coordinates = []
         def check_frame(self, frame):
@@ -17,7 +18,7 @@ class miceTracker():
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) 
                 gray = cv2.resize(gray, (self.width, self.height)) 
                 gray = cv2.blur(frame, (21, 21))
-                fgmask = fgbg.apply(gray, 0.005) 
+                fgmask = self.fgbg.apply(gray, 0.005) 
                 fgmask = cv2.morphologyEx(fgmask, cv2.MORPH_CLOSE, self.kernel)
                 thresh = cv2.threshold(fgmask, 128, 255, cv2.THRESH_BINARY)[1]
                 contours, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE) 
