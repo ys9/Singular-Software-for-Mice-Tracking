@@ -29,8 +29,8 @@ class PreviewThread(QThread):
             ret, frame = self.capture_device.read()
             #chk2 = time.time()
             if ret:
-                # rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                mouse_frame = self.mice_tracker.check_frame(frame)
+                rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                mouse_frame = self.mice_tracker.check_frame(rgbImage)
                 #p = QImage(rgbImage.data, rgbImage.shape[1], rgbImage.shape[0], QImage.Format_RGB888)
                 #convertToQtFormat = QImage(rgbImage.data, rgbImage.shape[1], rgbImage.shape[0], QImage.Format_RGB888)
                 convertToQtFormat = QImage(mouse_frame.data, mouse_frame.shape[1], mouse_frame.shape[0], QImage.Format_RGB888)
