@@ -23,17 +23,18 @@ class miceTracker():
                 contours, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE) 
 
                 maxArea = 0
-                flag = 0
+                flag = True
                 for c in contours:
                         if cv2.contourArea(c) < 1000:
-                                flag = 1
+                                flag = True
                                 continue 
                         if cv2.contourArea(c) > maxArea:
-                                flag = 0
+                                flag = False
                                 maxArea = cv2.contourArea(c) 
                                 (x, y, w, h) = cv2.boundingRect(c) 
                                 self.coordinates.append((x, y, w, h))
-                                if (self.coordinates.len() > 20):
+                                # self.coordinates.insert(0, (x, y, w, h))
+                                if (len(self.coordinates) > 20):
                                         update_file()
                 if not flag:
                         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
@@ -58,9 +59,14 @@ class miceTracker():
                         f = open(self.filename, 'ab') 
                         # wr = csv.writer(f, quoting=csv.QUOTE_ALL)
                         # wr.writerow(self.coordinates)
-                        f.write()
+                        for i in self.coordinates:
+                                x = self.coordinates.remove(i)
+                                y = self.calculate_cg(x[0], x[1], x[2], x[3])
+                                f.write(str(y[0]) + "," + str(y[1]))   
                 except IOError:
                         print("File cannot be opened. Will try again in the next iteration :)")
+                except ValueError:
+                        print("Wait, I'll Try again Later")
                 except:
                         print("Error Occurred. Will try again in the next iteration")
                 finally:
