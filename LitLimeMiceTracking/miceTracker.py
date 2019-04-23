@@ -47,7 +47,6 @@ class miceTracker():
 
 
         def calculate_cg(self, x, y, w, h):
-        """ Calculates the center of gravity of a rectangle """
                 return ((x + w) / 2, (y + h) / 2)
 
         def update_file(self):

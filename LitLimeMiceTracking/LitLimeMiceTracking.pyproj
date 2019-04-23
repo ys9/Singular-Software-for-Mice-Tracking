@@ -29,6 +29,7 @@
     <Compile Include="MainWindow.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="miceTracker.py" />
     <Compile Include="PreviewThread.py" />
     <Compile Include="RecordingThread.py" />
     <Compile Include="ui_mainwindow.py" />
