@@ -4,8 +4,7 @@ from MainWindow import *
 
 class miceTracker():
         ## Send capture object which was instantiated using cv2.VideoCapture()
-        def __init__(self, cap, height, width, name_CSV):
-                self.cap = cap 
+        def __init__(self, height, width, name_CSV):
                 self.height = height 
                 self.width = width 
                 self.kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5)) 
@@ -33,7 +32,8 @@ class miceTracker():
                                 self.coordinates.append((x, y, w, h))
                                 if (self.coordinates.len() > 20):
                                         update_file()
-                return (x, y, w, h) 
+                cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+                return frame
         
         
         def init_track_frame(self, x, y, w, h, frame):
@@ -53,8 +53,9 @@ class miceTracker():
         def update_file(self):
                 try:
                         f = open(self.filename, 'ab') 
-                        wr = csv.writer(f, quoting=csv.QUOTE_ALL)
-                        wr.writerow(self.coordinates)
+                        # wr = csv.writer(f, quoting=csv.QUOTE_ALL)
+                        # wr.writerow(self.coordinates)
+                        f.write()
                 except IOError:
                         print("File cannot be opened. Will try again in the next iteration :)")
                 except:

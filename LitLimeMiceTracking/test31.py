@@ -159,9 +159,7 @@ while ok:
         #         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2) 
         #         print("count: " + str(count) + " x: " + str(x) +" y: " + str(y) + " w: " + str(w) + " h: " + str(h))
         # # cv2.imshow("Shadow_removed", thresh) 
-        for c in contours:
-                if cv2.contourArea(c) < 1000:
-                        continue         
+        for c in contours:  
                 if cv2.contourArea(c) > maxArea:
                         maxArea = cv2.contourArea(c)
                         (x, y, w, h) = cv2.boundingRect(c)
