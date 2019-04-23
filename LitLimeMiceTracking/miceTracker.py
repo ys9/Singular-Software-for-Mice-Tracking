@@ -8,13 +8,15 @@ class miceTracker():
                 self.height = height 
                 self.width = width 
                 self.kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5)) 
+                #self.fgbg = cv2.bgsegm.createBackgroundSubtractorMOG() 
                 self.fgbg = cv2.bgsegm.createBackgroundSubtractorMOG() 
                 self.coordinates = []
         def check_frame(self, frame):
                 if frame is None:
                         print("Error: Frame is None")
                         return 
-                gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY) 
+                # gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY) 
+                gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 #gray = cv2.resize(gray, (self.width, self.height)) 
                 gray = cv2.blur(frame, (21, 21))
                 fgmask = self.fgbg.apply(gray, 0.005)                
@@ -33,9 +35,8 @@ class miceTracker():
                                 maxArea = cv2.contourArea(c) 
                                 (x, y, w, h) = cv2.boundingRect(c) 
                                 self.coordinates.append((x, y, w, h))
-                                # self.coordinates.insert(0, (x, y, w, h))
                                 if (len(self.coordinates) > 20):
-                                        update_file()
+                                        self.update_file()
                 if not flag:
                         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
                 return frame
@@ -46,12 +47,11 @@ class miceTracker():
                 ok = self.tracker.init(frame, bbox) 
         
         def track_frame(self, frame):
-                ok, bbox = tracker.update(frame) 
+                ok, bbox = self.tracker.update(frame) 
                 return bbox
 
 
         def calculate_cg(self, x, y, w, h):
-        """ Calculates the center of gravity of a rectangle """
                 return ((x + w) / 2, (y + h) / 2)
 
         def update_file(self):
@@ -60,14 +60,14 @@ class miceTracker():
                         # wr = csv.writer(f, quoting=csv.QUOTE_ALL)
                         # wr.writerow(self.coordinates)
                         for i in self.coordinates:
-                                x = self.coordinates.remove(i)
-                                y = self.calculate_cg(x[0], x[1], x[2], x[3])
+                                y = self.calculate_cg(i[0], i[1], i[2], i[3])
                                 f.write(str(y[0]) + "," + str(y[1]))   
+                                self.coordinates.remove(i)
+                        f.close()
                 except IOError:
                         print("File cannot be opened. Will try again in the next iteration :)")
                 except ValueError:
                         print("Wait, I'll Try again Later")
                 except:
                         print("Error Occurred. Will try again in the next iteration")
-                finally:
-                        f.close()
+
