@@ -25,18 +25,25 @@
     <Compile Include="Camera.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="dshow_graph.py" />
+    <Compile Include="dshow_ids.py" />
+    <Compile Include="dshow_structures.py" />
     <Compile Include="LitLimeMiceTracking.py" />
     <Compile Include="MainWindow.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="miceTracker.py" />
+    <Compile Include="moniker.py" />
     <Compile Include="PreviewThread.py" />
     <Compile Include="RecordingThread.py" />
+    <Compile Include="test26.py" />
+    <Compile Include="test31.py" />
     <Compile Include="ui_mainwindow.py" />
     <Compile Include="VideoDisplayManager.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="VideoPlayerThread.py" />
+    <Compile Include="win_api_extra.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.7" />
