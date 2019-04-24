@@ -13,7 +13,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.video_display_manager = VideoDisplayManager(self, [0,1,2])
+        self.video_display_manager = VideoDisplayManager(self, [0,1])
         self.video_display_manager.start()
 
     def stop_all_threads(self):

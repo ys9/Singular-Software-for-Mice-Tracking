@@ -35,8 +35,8 @@ class miceTracker():
                                 maxArea = cv2.contourArea(c) 
                                 (x, y, w, h) = cv2.boundingRect(c) 
                                 self.coordinates.append((x, y, w, h))
-                                if (len(self.coordinates) > 20):
-                                        self.update_file()
+                                #if (len(self.coordinates) > 20):
+                                        #self.update_file()
                 if not flag:
                         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
                 return frame
