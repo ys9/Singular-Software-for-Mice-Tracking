@@ -11,6 +11,9 @@ class miceTracker():
                 #self.fgbg = cv2.bgsegm.createBackgroundSubtractorMOG() 
                 self.fgbg = cv2.bgsegm.createBackgroundSubtractorMOG() 
                 self.coordinates = []
+                self.filename = name_CSV
+                self.file = open(self.filename, 'w+')
+
         def check_frame(self, frame):
                 if frame is None:
                         print("Error: Frame is None")
@@ -56,18 +59,20 @@ class miceTracker():
 
         def update_file(self):
                 try:
-                        f = open(self.filename, 'ab') 
+                        # f = open(self.filename, 'a') 
                         # wr = csv.writer(f, quoting=csv.QUOTE_ALL)
                         # wr.writerow(self.coordinates)
                         for i in self.coordinates:
                                 y = self.calculate_cg(i[0], i[1], i[2], i[3])
-                                f.write(str(y[0]) + "," + str(y[1]))   
+                                print(str(y[0]) + "," + str(y[1]), file=self.file)
+                                # self.f.write(str(y[0]) + "," + str(y[1]))   
                                 self.coordinates.remove(i)
-                        f.close()
+                        # f.close()
                 except IOError:
                         print("File cannot be opened. Will try again in the next iteration :)")
                 except ValueError:
                         print("Wait, I'll Try again Later")
                 except:
                         print("Error Occurred. Will try again in the next iteration")
-
+        def __del__(self):
+                self.file.close()
