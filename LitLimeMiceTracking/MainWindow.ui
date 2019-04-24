@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>841</width>
+    <width>906</width>
     <height>627</height>
    </rect>
   </property>
@@ -81,30 +81,47 @@
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="CameraOneCheckbox">
+        <widget class="QCheckBox" name="Camera1Checkbox">
          <property name="text">
           <string>Camera 1</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="CameraTwoCheckbox">
+        <widget class="QCheckBox" name="Camera2Checkbox">
          <property name="text">
           <string>Camera 2</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="CameraThreeCheckbox">
+        <widget class="QCheckBox" name="Camera3Checkbox">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="text">
           <string>Camera 3</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="CameraFourCheckbox">
+        <widget class="QCheckBox" name="Camera4Checkbox">
          <property name="text">
           <string>Camera 4</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Record Time (seconds)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="spinBox">
+         <property name="maximum">
+          <number>999999999</number>
          </property>
         </widget>
        </item>
@@ -297,90 +314,6 @@
         </widget>
        </item>
        <item>
-        <spacer name="verticalSpacer_5">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QLabel" name="DataInputLabel">
-         <property name="text">
-          <string>Data CSV</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="DataInputPath"/>
-       </item>
-       <item>
-        <widget class="QPushButton" name="PB_BrowseButtonTwo">
-         <property name="maximumSize">
-          <size>
-           <width>60</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="layoutDirection">
-          <enum>Qt::LeftToRight</enum>
-         </property>
-         <property name="text">
-          <string>Browse</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer_4">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QLabel" name="ScriptInputLabel">
-         <property name="text">
-          <string>Python Script </string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="ScriptInputPath"/>
-       </item>
-       <item>
-        <widget class="QPushButton" name="PB_BrowseButtonThree">
-         <property name="maximumSize">
-          <size>
-           <width>60</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="layoutDirection">
-          <enum>Qt::LeftToRight</enum>
-         </property>
-         <property name="text">
-          <string>Browse</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -406,7 +339,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>841</width>
+     <width>906</width>
      <height>26</height>
     </rect>
    </property>
