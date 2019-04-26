@@ -1,0 +1,9 @@
+Mouse 1 2
+Mouse 2 1
+Mouse 1
+Mouse "Nap num" "time slept" "start time" "end time" "time since last nap"
+1 1 60 35 95 0
+1 2 45 105 150 10
+Mouse 2
+Mouse "Nap num" "time slept" "start time" "end time" "time since last nap"
+2 1 130 25 -1 0
