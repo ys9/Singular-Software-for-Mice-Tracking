@@ -18,7 +18,7 @@ class PreviewThread(QThread):
         self.capture_device = capture_device
         self.frame_width = parent.frame_width
         self.frame_height = parent.frame_height
-        self.mice_tracker = miceTracker(int(self.frame_height/self.division), int(self.frame_width/self.division), "software_engineering_sucks.csv")
+        self.mice_tracker = miceTracker(int(self.frame_height/self.division), int(self.frame_width/self.division), "test.csv")
 
     def run(self):
         while self.shouldPreview:
@@ -28,13 +28,7 @@ class PreviewThread(QThread):
             ret, frame = self.capture_device.read()
             if ret:
                 rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-<<<<<<< HEAD
-                mouse_frame = self.mice_tracker.check_frame(frame)
-                #p = QImage(rgbImage.data, rgbImage.shape[1], rgbImage.shape[0], QImage.Format_RGB888)
-                #convertToQtFormat = QImage(rgbImage.data, rgbImage.shape[1], rgbImage.shape[0], QImage.Format_RGB888)
-=======
                 mouse_frame = self.mice_tracker.check_frame(rgbImage)
->>>>>>> 03314e430e2b8d6cfb8a7a4b5a4e70cbfd6dc328
                 convertToQtFormat = QImage(mouse_frame.data, mouse_frame.shape[1], mouse_frame.shape[0], QImage.Format_RGB888)
                 #convertToQtFormat = QImage(rgbImage.data, rgbImage.shape[1], rgbImage.shape[0], QImage.Format_RGB888)
                 p = convertToQtFormat.scaled(self.frame_width/self.division, self.frame_height/self.division, Qt.KeepAspectRatio)
