@@ -8,12 +8,16 @@ from PySide2.QtWidgets import *
 from ui_mainwindow import *
 from dshow_graph import FilterGraph
 from VideoDisplayManager import VideoDisplayManager
+from VideoPlayerThread import VideoPlayerThread
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.ui.PB_BrowseButtonOne.clicked.connect(self.open_file_dialog)
+        self.ui.PlayPauseButton.clicked.connect(self.start_video_player_thread)
+        self.video_to_play = None
         graph = FilterGraph()
         self.camera_id_list = []
         self.should_reset_preview = True
@@ -32,6 +36,17 @@ class MainWindow(QMainWindow):
         while self.video_display_manager.isRunning():
             continue
 
+    def open_file_dialog(self):
+        dlg = QFileDialog()
+        dlg.setNameFilters(["Video files (*.avi)"])
+        dlg.selectNameFilter("Video files (*.avi)")
+        dlg.exec_()
+        try:
+            self.video_to_play = dlg.selectedFiles()[0]
+            self.ui.lineEdit.setText(self.video_to_play)
+        except IndexError:
+            self.video_to_play = None
+
     def modify_camera_options(self):
         for i in range(len(self.connected_cameras)):
             self.camera_checkbox_references[i].setText(self.connected_cameras[i])
@@ -45,6 +60,34 @@ class MainWindow(QMainWindow):
     def start_vdm(self):
         self.video_display_manager = VideoDisplayManager(self, self.camera_id_list)
         self.video_display_manager.start()
+
+    def start_video_player_thread(self):
+        self.vpt = VideoPlayerThread(self, self.video_to_play)
+        for c in self.video_display_manager.camera_list:
+            c.preview_thread.shouldPause = True
+        self.vpt.sendPixmapSignal.connect(self.set_image)
+        self.vpt.changeSliderPosition.connect(self.set_slider_position)
+        self.vpt.changeSliderTickCount.connect(self.change_slider_tick_count)
+        self.ui.pushButton_4.clicked.connect(self.vpt.fast_forward)
+        self.ui.horizontalSlider.sliderMoved.connect(self.vpt.change_video_frame)
+        self.ui.StopButton.clicked.connect(self.vpt.stop)
+        self.vpt.threadFinished.connect(self.disconnect)
+        self.vpt.start()
+
+    def change_slider_tick_count(self, tick_count):
+        self.ui.horizontalSlider.setMaximum(tick_count)
+
+    def set_slider_position(self, num):
+        self.ui.horizontalSlider.setValue(num)
+
+    def disconnect(self):
+        self.vpt.sendPixmapSignal.disconnect()
+        for c in self.video_display_manager.camera_list:
+            c.preview_thread.shouldPause = False
+        self.vpt = None
+
+    def set_image(self, func, image):
+        func(QPixmap.fromImage(image))
 
     def apply_preview_options(self):
         i = 0

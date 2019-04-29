@@ -8,7 +8,6 @@ def main():
     LitLimeWindow.show()
 
     app.exec_()
-    print("done")
     LitLimeWindow.stop_all_threads()
 
 if __name__ == '__main__':

@@ -28,11 +28,12 @@ class VideoDisplayManager(QThread):
         #print(parent.ui.gridLayoutWidget.geometry())
         self.start_all_camera_previews() # get rid of soon
 
+
     def connect_pixmap(self):
         self.changePixmap.connect(self.set_image)
 
     def connect_buttons(self):
-        self.parent.ui.PlayPauseButton.clicked.connect(self.start_video_player_thread)
+        #self.parent.ui.PlayPauseButton.clicked.connect(self.start_video_player_thread)
         for camera in self.camera_list:
             camera.set_output_filename('camera' + str(camera.device_id)+ '.avi')
             self.parent.ui.RecordButton.clicked.connect(camera.begin_video_recording_thread)
@@ -69,20 +70,19 @@ class VideoDisplayManager(QThread):
             self.parent.ui.gridLayout.addWidget(tmp_label, 0, 0, 1, 1)
             self.label_array.append(tmp_label.setPixmap)
 
+    #def start_video_player_thread(self):
+    #    self.vpt = VideoPlayerThread(self.parent, 'output.avi')
+    #    for c in self.camera_list:
+    #        c.preview_thread.shouldPause = True
+    #    self.vpt.sendPixmapSignal.connect(self.set_image)
+    #    self.vpt.threadFinished.connect(self.disconnect)
+    #    self.vpt.start()
 
-    def start_video_player_thread(self):
-        self.vpt = VideoPlayerThread(self.parent, 'output.avi')
-        for c in self.camera_list:
-            c.preview_thread.shouldPause = True
-        self.vpt.sendPixmapSignal.connect(self.set_image)
-        self.vpt.threadFinished.connect(self.disconnect)
-        self.vpt.start()
-
-    def disconnect(self):
-        self.vpt.sendPixmapSignal.disconnect()
-        for c in self.camera_list:
-            c.preview_thread.shouldPause = False
-        self.vpt = None
+    #def disconnect(self):
+    #    self.vpt.sendPixmapSignal.disconnect()
+    #    for c in self.camera_list:
+    #        c.preview_thread.shouldPause = False
+    #    self.vpt = None
 
     def set_image(self, func, image):
         func(QPixmap.fromImage(image))
