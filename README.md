@@ -1,4 +1,4 @@
-# miceTracking
+# Singular Software for Mice Tracking
 
 ----  5 May 2019  ----
 
